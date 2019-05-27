@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*Chèn link css của free template download*@
+    <link href="~/Content/NguoiDungCssLayout/screen.css" rel="stylesheet" />
+    <link href="~/Content/NguoiDungCssLayout/fonts.css" rel="stylesheet" />
+    @*chèn css thiết kế*@
+    <link href="~/Content/NguoiDungCssLayout/NguoiDungCssLayout.css" rel="stylesheet" />
+    <link href="~/Content/NguoiDungCssLayout/TrangChuCss.css" rel="stylesheet" />
+    @*chèn linl css, javascript nivo*@
+
+    <link href="~/Slider/nivo-slider.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Slider/jquery.nivo.slider.js"></script>
+        <script src="~/Slider/jquery.nivo.slider.pack.js"></script>
+
+</head>
+
+<body>
+  @RenderBody();
+    <div id="ToanTrang">
+        <section class="blank">
+            <div class="flash">
+                <div class="DienThoai">
+                    HotLine : (08) 1900-7890
+                </div>
+                @*Tạo đăng ký đăng nhập*@
+                <div class="DangKy/DangNhap">
+                    @Html.ActionLink("Đăng Ký", "DangKy", null, htmlAttributes: new { @class = "DangKy" })
+                    @Html.ActionLink("Đăng Nhập", "DangNhap", null, htmlAttributes: new { @class = "DangNhap" })
+                </div>
+            </div>
+
+            @*Xây dưng div Menu bên phải*@
+
+            <div class="flash success" id="divDanhMuc">
+                @*Hộp thoại tìm kiếm*@
+                <div id="txtTimKiem">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.TextBox("txtTimKiem", "", htmlAttributes: new { @class = "TextBoxTimKiem", @placeholder = "Tìm Kiếm" })
+
+                    }
+                </div>
+                @*Menu ben phai header*@
+                <ul class="mavMenu">
+                    <li>
+                        <a href="#">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a href="#">Giới Thiệu</a>
+                    </li>
+                    <li>
+                        <a href="#">Nước Hoa</a>
+                    </li>
+                    <li>
+                        <a href="#">Liên Hệ</a>
+                    </li>
+                    <li>
+                        <a href="#">Hướng Dẫn</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            @*div menu trái*@
+            <div id="divMenuLeft">
+                @*Chèn vào partial view sản phẩm *@
+                <div class="activity">
+                    @Html.Action("SanPhamPartial","NuocHoa")
+             
+                </div>
+            </div>
+            @*chèn div nivo slider ảnh*@
+            <div id="img" class="img">
+                <img src="~/Hình Ảnh/568ee48e87fd6_thumb900.jpg" />
+
+
+            </div>
+            <div style="clear:both"></div>
+        </section>
+               
+        <section>
+            @*Phân Loại*@
+            <div id="ThuongHieu" class="button">
+                <a href="#" class="button"> CHANEL </a>
+                <a href="#" class="button button-submit"> GUCCI </a>
+                <a href="#" class="button"> CALVIN KLEIN </a>
+                <a href="#" class="button button-submit"> DIOR </a>
+                <a href="#" class="button"> BURBERRY </a>
+
+            </div>
+            
+            @*div body trang index*@
+            <div id="divBody">
+                @{ int i = 0;}
+                @foreach (var item in Model)
+                {
+                    i++;
+                    <div id="SanPham">
+                        <div id="Anh"><img src="@Url.Content("~/HinhAnhSP/"+item.Anh)" width="100" height="150"></div>
+                        <div id="TenNuocHoa">@item.TenSP</div>
+                        <div id="DonGia">@item.Gia</div>
+                    </div>
+                    if (i % 3 == 0)
+                    {
+
+                        <div style="clear:both"></div>
+                    }
+                }
+
+            </div>
+           
+
+
+        </section>
+        @* Nhãn hiệu nước hoa*@
+        <section class="blank items">
+            <div class="item">
+
+                <img src="~/Hình Ảnh/gucci_sp7.jpg" />
+
+                <div class="item-info">
+                    <h1>Nhãn Hiệu Nước Hoa</h1>
+                    <div><a href="#"> GUCCI </a></div>
+                </div>
+            </div>
+
+            
+            <div>
+                <a href="#" class="button button-buy"> Chào mừng bạn đến với thế giới nước hoa </a>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

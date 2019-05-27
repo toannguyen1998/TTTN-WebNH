@@ -1,0 +1,26 @@
+﻿
+@using WebNuocHoa.Models;
+@*định nghĩa kiểu dữ liệu cho biến Model*@
+@model List<SP>
+
+<h1 class="item-header">Sản Phẩm </h1>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="activity-list-update">
+            <img src="@Url.Content("~/HinhAnhSP/"+item.Anh)" width="50" height="50" alt="Image">
+            <p><strong> @item.TenSP</strong> <br /><br /> <a href="#">  Xem Chi Tiết </a></p>
+            <div class="clear"></div>
+        </div>
+
+    }
+
+}
+
+
+<a href="#" class="item-footer green">
+    Bộ Sưu Tập Mới
+</a>
+
+
